@@ -1,0 +1,59 @@
+name: Tag and Release
+
+on:
+  push:
+    branches:
+      - main  # Replace with the name of your main branch
+
+jobs:
+  tag_and_release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up Git
+      run: |
+        git config --global user.name "kdahal"
+        git config --global user.email "kumar.dahal@outlook.com"
+
+    - name: Bump version (optional)
+      run: |
+        # You can use a tool like Semver or bumpversion to automate version increment.
+        # For example, you can use 'npm version' for Node.js projects.
+        # Replace this step with your versioning strategy.
+
+        # Example using npm version:
+        # npm version patch -m "Bump version to %s"
+
+    - name: Create Git tag
+      run: |
+        # Generate a unique tag based on the current date and commit hash.
+        TAG="v$(date +'%Y%m%d')-$(git rev-parse --short HEAD)"
+        git tag "$TAG"
+
+    - name: Push Git tag
+      run: |
+        git push origin "$TAG"
+
+    - name: Create GitHub Release
+      id: create_release
+      uses: actions/create-release@v1
+      with:
+        files:  # Add files you want to include in the release here
+          - ./path/to/your/file
+        tag_name: ${{ steps.create_tag.outputs.tag_name }}
+        release_name: Release ${{ steps.create_tag.outputs.tag_name }}
+        draft: false
+        prerelease: false
+
+    - name: Deploy or Notify (optional)
+      run: |
+        # Add deployment or notification steps here, such as deploying to a server,
+        # sending notifications to a chat platform, or triggering other workflows.
+        # You can use the release assets URL provided by GitHub to access the uploaded files.
+
+        # Example: Deploy to a server using SSH
+        # scp -i /path/to/ssh-key ./path/to/your/file user@server:/path/to/destination/
+
