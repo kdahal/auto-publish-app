@@ -34,7 +34,7 @@ jobs:
 
     - name: Push Git tag
       run: |
-        git push origin "$TAG"
+        git push --"$TAG"
 
     - name: Create GitHub Release
       id: create_release
