@@ -39,9 +39,8 @@ jobs:
     - name: Create GitHub Release
       id: create_release
       uses: actions/create-release@v1
-      with:
-        files:  # Add files you want to include in the release here
-          - ./path/to/your/file
+      env:
+        DEFAULT_BRANCH: main
         tag_name: ${{ steps.create_tag.outputs.tag_name }}
         release_name: Release ${{ steps.create_tag.outputs.tag_name }}
         draft: false
