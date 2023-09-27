@@ -37,18 +37,16 @@ jobs:
             git push --"$TAG"
         
        ### Create Release PR
-    - name: Create Pull Request for Release
+    - name: Create GitHub Release
+      id: create_release
       uses: actions/create-release@v1
       with:
-          author: "${{ env.GH_USER_NAME }} <${{ env.GH_USER_NAME }}s@users.noreply.github.com>"
-          base: main
-          body: |
-            - Auto-generated PR for Release
-            - View CHANGELOG.md for Changes
-          assignees: ${{ env.GH_USER_NAME }}
-          reviewers: ${{ env.GH_USER_NAME }}
-          draft: false
-          token: ${{ secrets.TOKEN_PAT }}
+        upload:  ${{ }} # Add files you want to include in the release here
+
+        tag_name: ${{ steps.create_tag.outputs.tag_name }}
+        release_name: Release ${{ steps.create_tag.outputs.tag_name }}
+        draft: false
+        prerelease: false
 
     - name: Deploy or Notify (optional)
       run: |
