@@ -35,8 +35,6 @@ jobs:
     - name: Push Git tag
       run: |
             git push --"$TAG"
-              env:
-                PAT_TOKEN: ${{ secrets.TOKEN_PAT }}
         
     - name: Create GitHub Release
       id: create_release
