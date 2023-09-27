@@ -17,7 +17,6 @@ on:
         required: true
         type: boolean
 
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
