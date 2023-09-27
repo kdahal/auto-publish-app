@@ -17,15 +17,6 @@ jobs:
         git config --global user.name "kdahal"
         git config --global user.email "kumar.dahal@outlook.com"
 
-    - name: Bump version (optional)
-      run: |
-        # You can use a tool like Semver or bumpversion to automate version increment.
-        # For example, you can use 'npm version' for Node.js projects.
-        # Replace this step with your versioning strategy.
-
-        # Example using npm version:
-        # npm version patch -m "Bump version to %s"
-
     - name: Generate release tag
       id: TAG
       run: |
@@ -39,12 +30,3 @@ jobs:
             files: |
               file1
               file2
-
-    - name: Deploy or Notify (optional)
-      run: |
-        # Add deployment or notification steps here, such as deploying to a server,
-        # sending notifications to a chat platform, or triggering other workflows.
-        # You can use the release assets URL provided by GitHub to access the uploaded files.
-
-        # Example: Deploy to a server using SSH
-        # scp -i /path/to/ssh-key ./path/to/your/file user@server:/path/to/destination/
