@@ -40,8 +40,7 @@ jobs:
     - name: Create GitHub Release
       id: create_release
       uses: TriPSs/conventional-changelog-action@3.7.1
-      with:
-         github-token: ${{ secerts.TOKEN_PAT }}
+
     - name: create release
       uses: actions/create-release@1
       if: ${{ steps.changelog.outputs.skipped == 'false' }}
