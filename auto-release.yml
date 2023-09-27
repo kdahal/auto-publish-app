@@ -39,15 +39,18 @@ jobs:
        ### Create Release PR
     - name: Create GitHub Release
       id: create_release
-      uses: actions/create-release@v1
+      uses: TriPSs/conventional-changelog-action@3.7.1
       with:
-         author: "kdahal@outlook.github.com>"
-         base: main
-         body: |
-          assignees: ${{ env.GH_USER_NAME }}
-          reviewers: ${{ env.GH_USER_NAME }}
-          draft: false
-          opts.auth: ${{ secrets.TOKEN_PAT }}
+         github-token: ${{ secerts.CHANGELOG_RELEASE }}
+    - name: create release
+      uses: actions/create-release@1
+      if: ${{ steps.changelog.outputs.skipped == 'false' }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.CHANGELOG_RELEASE }}
+        with:
+          tag_name: ${{ steps.changelog.outputs.tag }}
+          release_name: ${{ steps.changelog.outputs.tag }}
+          body: ${{ steps.changelog.outputs.clean_changelog }}
 
 
     - name: Deploy or Notify (optional)
