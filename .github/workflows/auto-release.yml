@@ -25,17 +25,6 @@ jobs:
 
         # Example using npm version:
         # npm version patch -m "Bump version to %s"
-    - name: Push Changes
-      run: |
-            git config --global user.email "kumar.dahal@outlook.com"
-            git config --global user.name "kdahal"
-            git checkout main  # Replace with your target branch
-            git add .  # Add your changes
-            git commit -m "Tag Commit message"
-            git push https://github.com/kdahal/auto-publish-app.git main  # Replace with your repository URL and branch
-              env:
-                PAT_TOKEN: ${{ secrets.TOKEN_PAT }}
-
       
     - name: Create Git tag
       run: |
@@ -45,7 +34,16 @@ jobs:
       
     - name: Push Git tag
       run: |
-        git push --"$TAG"
+            git config --global user.email "kumar.dahal@outlook.com"
+            git config --global user.name "kdahal"
+            git checkout main  # Replace with your target branch
+            git add .  # Add your changes
+            git commit -m "Tag Commit message
+            git push --"$TAG"
+            git push https://github.com/kdahal/auto-publish-app.git main  # Replace with your repository URL and branch
+              env:
+                PAT_TOKEN: ${{ secrets.TOKEN_PAT }}
+        
     - name: Grant Execute Permissions to Script
       run: chmod +x /home/runner/work/_temp/bffdcdd3-7cbb-4097-8c42-b3a43d5d1068.sh
     - name: Create GitHub Release
