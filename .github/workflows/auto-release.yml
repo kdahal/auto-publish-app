@@ -36,6 +36,19 @@ jobs:
       run: |
             git push --"$TAG"
         
+       ### Create Release PR
+    - name: Create Pull Request for Release
+      uses: actions/create-release@v1
+      with:
+          author: "${{ env.GH_USER_NAME }} <${{ env.GH_USER_NAME }}s@users.noreply.github.com>"
+          base: main
+          body: |
+            - Auto-generated PR for Release
+            - View CHANGELOG.md for Changes
+          assignees: ${{ env.GH_USER_NAME }}
+          reviewers: ${{ env.GH_USER_NAME }}
+          draft: false
+          token: ${{ secrets.TOKEN_PAT }}
 
     - name: Deploy or Notify (optional)
       run: |
