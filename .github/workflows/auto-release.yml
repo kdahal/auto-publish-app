@@ -45,7 +45,7 @@ jobs:
         release_name: Release ${{ steps.create_tag.outputs.tag_name }}
         draft: false
         prerelease: false
-        token: ${{secrets.TOKEN_PAT}}
+        opts.access: ${{secrets.TOKEN_PAT}}
 
     - name: Deploy or Notify (optional)
       run: |
