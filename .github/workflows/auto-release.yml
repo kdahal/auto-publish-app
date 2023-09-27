@@ -41,13 +41,13 @@ jobs:
       id: create_release
       uses: actions/create-release@v1
       with:
-         author: "${{ env.GH_USER_NAME }} <${{ env.GH_USER_NAME }}@outlook.github.com>"
+         author: "kdahal@outlook.github.com>"
          base: main
          body: |
           assignees: ${{ env.GH_USER_NAME }}
           reviewers: ${{ env.GH_USER_NAME }}
           draft: false
-          token: ${{ secrets.VSTART_GPM_AUTH }}
+          token: ${{ secrets.TOKEN_PAT }}
 
 
     - name: Deploy or Notify (optional)
