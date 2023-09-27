@@ -36,17 +36,19 @@ jobs:
       run: |
             git push --"$TAG"
 
-    - name: Create GitHub Release
+    - name: Generate release tag
       id: create_release
+      run: |
+            echo "::set-output name=release_tag::UserBuild_$(date +"%Y.%m.%d_%H-%M")"
+    - name: Release user firmware
       uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        files: .  # Add the file to the release
-        tag_name: ${{ steps.create_tag.outputs.tag_name }}
-        release_name: Release ${{ steps.create_tag.outputs.tag_name }}
-        draft: false
-        prerelease: false
-        token: ${{ secrets.TOKEN_PAT }}
-
+            tag_name: ${{ steps.tag.outputs.release_tag }}
+            files: |
+              file1
+              file2
 
     - name: Deploy or Notify (optional)
       run: |
