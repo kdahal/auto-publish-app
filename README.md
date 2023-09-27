@@ -1,4 +1,4 @@
 # auto-publish-app
-# Test uytruy
+# Test
 
 Testing one again
