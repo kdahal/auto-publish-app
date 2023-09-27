@@ -47,7 +47,7 @@ jobs:
           assignees: ${{ env.GH_USER_NAME }}
           reviewers: ${{ env.GH_USER_NAME }}
           draft: false
-          token: ${{ secrets.TOKEN_PAT }}
+          opts.auth: ${{ secrets.TOKEN_PAT }}
 
 
     - name: Deploy or Notify (optional)
