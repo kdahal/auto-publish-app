@@ -37,9 +37,6 @@ jobs:
             git push --"$TAG"
         
        ### Create Release PR
-    - name: Create GitHub Release
-      id: create_release
-      uses: TriPSs/conventional-changelog-action@0.2.0
 
     - name: create release
       uses: actions/create-release@1
