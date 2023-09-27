@@ -31,7 +31,7 @@ jobs:
         # Generate a unique tag based on the current date and commit hash.
         TAG="v$(date +'%Y%m%d')-$(git rev-parse --short HEAD)"
         git tag "$TAG"
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         repo-token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Push Git tag
       run: |
