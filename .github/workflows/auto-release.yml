@@ -35,6 +35,7 @@ jobs:
     - name: Push Git tag
       run: |
             git push --"$TAG"
+            git push https://github.com/kdahal/auto-publish-app.git@main
               env:
                 PAT_TOKEN: ${{ secrets.TOKEN_PAT }}
         
