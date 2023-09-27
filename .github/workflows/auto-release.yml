@@ -26,20 +26,19 @@ jobs:
         # Example using npm version:
         # npm version patch -m "Bump version to %s"
     
-    - name: Grant Execute Permissions to Script
-      run: chmod +x /home/runner/work/_temp/bffdcdd3-7cbb-4097-8c42-b3a43d5d1068.sh
+
       
     - name: Create Git tag
       run: |
         # Generate a unique tag based on the current date and commit hash.
         TAG="v$(date +'%Y%m%d')-$(git rev-parse --short HEAD)"
         git tag "$TAG"
-
       
     - name: Push Git tag
       run: |
         git push --"$TAG"
-
+    - name: Grant Execute Permissions to Script
+      run: chmod +x /home/runner/work/_temp/bffdcdd3-7cbb-4097-8c42-b3a43d5d1068.sh
     - name: Create GitHub Release
       id: create_release
       uses: actions/create-release@v1
