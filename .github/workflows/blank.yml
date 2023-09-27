@@ -41,9 +41,6 @@ jobs:
       with:
         # Specify the path to the file you want to include in the release
         upload_url: ${{ github.event.repository.releases_url }}@main
-        asset_path: .
-        asset_name: your-asset-name.ext  # Name of the asset in the release
-        asset_content_type: kdahal/auto-publish-app
 
     - name: Create GitHub Release
       id: create_release
