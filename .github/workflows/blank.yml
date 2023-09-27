@@ -35,18 +35,25 @@ jobs:
     - name: Push Git tag
       run: |
             git push --"$TAG"
-        
-       ### Create Release PR
 
-    - name: create release
-      uses: actions/create-release@1
-      if: ${{ steps.changelog.outputs.skipped == 'false' }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.CHANGELOG_RELEASE }}
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
       with:
-        tag_name: ${{ steps.changelog.outputs.tag }}
-        release_name: ${{ steps.changelog.outputs.tag }}
-        body: ${{ steps.changelog.outputs.clean_changelog }}
+        # Specify the path to the file you want to include in the release
+        upload_url: ${{ github.event.repository.releases_url }}
+        asset_path: .
+        asset_name: your-asset-name.ext  # Name of the asset in the release
+        asset_content_type: kdahal/auto-publish-app
+
+    - name: Create GitHub Release
+      id: create_release
+      uses: actions/create-release@v1
+      with:
+        files: ./path/to/your/file  # Add the file to the release
+        tag_name: ${{ steps.create_tag.outputs.tag_name }}
+        release_name: Release ${{ steps.create_tag.outputs.tag_name }}
+        draft: false
+        prerelease: false
 
 
     - name: Deploy or Notify (optional)
