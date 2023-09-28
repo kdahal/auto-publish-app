@@ -1,4 +1,2 @@
-# auto-publish-app
-# Test
+# Solution: Use a matrix strategy to test an application
 
-Testing one again
