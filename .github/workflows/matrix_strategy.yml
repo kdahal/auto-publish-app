@@ -2,9 +2,9 @@ name: Python Workflow for Sum Frequencies Application
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [ matrix_strategy ]
   pull_request:
-    branches: [ main ]
+    branches: [ matrix_strategy ]
 jobs:
   build:
     strategy:
