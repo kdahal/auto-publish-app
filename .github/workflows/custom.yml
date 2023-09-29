@@ -1,0 +1,15 @@
+name: Custom
+on:
+
+  workflow_dispatch:
+  push:
+    branches: [ custom-action ]
+  pull_request:
+    branches: [ custom-action ]
+
+jobs:
+  main:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v3
+      - uses: https://github.com/kdahal-ventera/custom-action.git@main
