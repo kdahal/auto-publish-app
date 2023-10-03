@@ -1,2 +1,3 @@
-bios
+fastapi
+uvicorn
 
