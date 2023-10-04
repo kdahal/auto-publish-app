@@ -14,10 +14,10 @@ jobs:
       - name: Setup go
         uses: actions/setup-go@v2
         with:
-         go-version: 1.21.1
-
+          go-version: 1.21.1
+          
       - name: Build the hugo executable
-        run: go install --tags extended github.com/gohugoio/hugo@latestd
+        run: go install --tags extended github.com/gohugoio/hugo@latest
 
       - uses: actions/upload-artifact@v2
         with:
